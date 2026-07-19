@@ -1,0 +1,49 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mphil-research"
+version = "0.1.0"
+description = "MPhil Research Repository - Computer Vision & ML"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "Chathura Madhusanka", email = "chathura@quarrysoft.com"}
+]
+
+dependencies = [
+    "torch>=2.1",
+    "torchvision>=0.16",
+    "ultralytics>=8.2",
+    "numpy>=1.24",
+    "opencv-python>=4.8",
+    "matplotlib>=3.7",
+    "pandas>=2.0",
+    "pyyaml>=6.0",
+    "tqdm>=4.65",
+    "jupyter>=1.0",
+    "ipykernel>=6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "black>=23.0",
+    "ruff>=0.1",
+    "mypy>=1.0",
+]
+
+[tool.black]
+line-length = 100
+target-version = ['py310']
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--cov=src --cov-report=html --cov-report=term"
