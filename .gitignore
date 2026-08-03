@@ -8,6 +8,7 @@ env/
 
 # Data & Models (Large files - don't commit)
 datasets/
+experiments/datasets/
 models/
 *.pth
 *.pt
@@ -31,8 +32,9 @@ exp/
 
 # Jupyter Notebooks
 .ipynb_checkpoints/
+# Keep experiments folder notebooks (Colab-ready with BASE_URL)
 *.ipynb
-!notebooks/*.ipynb
+!experiments/**/*.ipynb
 
 # Python
 __pycache__/
