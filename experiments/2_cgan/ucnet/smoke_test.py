@@ -1,5 +1,7 @@
 """Quick end-to-end smoke test on tiny synthetic data (no real dataset needed)."""
-import json, os, tempfile
+import json
+import os
+import tempfile
 import numpy as np
 import torch
 from PIL import Image
@@ -71,7 +73,8 @@ def run():
             d_fake_g = D(x, torch.softmax(logits, 1))
             loss_g, parts = crit.generator_loss(logits, target, d_fake_g)
             opt_g.zero_grad(); loss_g.backward(); opt_g.step()
-            print(f"  loss_d={loss_d.item():.4f}  loss_g parts={ {k: round(v,4) for k,v in parts.items()} }")
+            parts_str = {k: round(v, 4) for k, v in parts.items()}
+            print(f"  loss_d={loss_d.item():.4f}  loss_g parts={parts_str}")
 
             # exact segment-loss metric (Eq. 1)
             hard = crit.seg.hard_ratio(logits, target)

@@ -39,9 +39,9 @@ except ImportError:  # pragma: no cover
     Image = None
 
 
-# The 25 ARCADE segment category names -> we keep the 20 the paper evaluates.
-# The mapping is by COCO category id; adjust CATEGORY_ID_TO_CLASS if your json
-# uses different ids. Here we build it dynamically from the json instead.
+def _get_annotation_area(ann):
+    """Get annotation area for sorting."""
+    return ann.get("area", 0)
 
 
 class ArcadeSegmentDataset(Dataset):
@@ -78,14 +78,11 @@ class ArcadeSegmentDataset(Dataset):
         return len(self.ids)
 
     def _rasterise(self, anns, w, h):
-        """Polygons -> class mask and binary vessel mask."""
+        """Polygons -> class mask and binary vessel mask. Larger segments drawn first."""
         mask = Image.new("I", (w, h), 0)
         binary = Image.new("L", (w, h), 0)
         dm, db = ImageDraw.Draw(mask), ImageDraw.Draw(binary)
-        # draw larger segments first so thin distal ones stay on top
-        def area(a):
-            return a.get("area", 0)
-        for ann in sorted(anns, key=area, reverse=True):
+        for ann in sorted(anns, key=_get_annotation_area, reverse=True):
             cls = self.cat2class.get(ann["category_id"])
             if cls is None:
                 continue
