@@ -1,12 +1,12 @@
 # Coronary Artery Segmentation Experiments
 
-**4 Complete Training Pipelines - Ready for Google Colab**
+**5 Complete Training Pipelines - Ready for Google Colab**
 
 All code uses `BASE_URL` configuration for Colab and local compatibility.
 
 ---
 
-## 🎯 4 Approaches
+## 🎯 5 Approaches
 
 ### 1. Simple U-Net (Learning)
 - **Folder:** `1_simple_unet_learning/`
@@ -40,6 +40,18 @@ All code uses `BASE_URL` configuration for Colab and local compatibility.
 - **Time:** 3-5 hours
 - **Performance:** Dice ~0.91
 - **Includes:** models.py, utils.py
+
+### 5. SAM-VMNet (Foundation Model + Medical)
+- **Folder:** `5_sam_vmnet/`
+- **Notebooks:**
+  - `01_sam_vmnet_setup.ipynb` (clone & setup)
+  - `02_sam_vmnet_finetune.ipynb` (fine-tune on ARCADE)
+  - `03_sam_vmnet_inference.ipynb` (evaluate & compare)
+- **Best for:** Foundation model exploration, hybrid approach
+- **Time:** 3-4 hours
+- **Performance:** Dice ~0.85-0.92
+- **Includes:** models.py (utilities)
+- **Based on:** [SAM-VMNet by qimingfan10](https://github.com/qimingfan10/SAM-VMNet)
 
 ---
 
@@ -98,11 +110,18 @@ experiments/
 │   ├── colab_train.ipynb              ✅ Ready
 │   └── data/                          ✅ Dataset converter
 │
-└── 4_fpn_unet_swin/
-    ├── 01_data_prep_colab.ipynb       ✅ Ready
-    ├── 02_train_colab.ipynb           ✅ Ready
-    ├── models.py                      ✅ Model architectures
-    └── utils.py                       ✅ Utilities & losses
+├── 4_fpn_unet_swin/
+│   ├── 01_data_prep_colab.ipynb       ✅ Ready
+│   ├── 02_train_colab.ipynb           ✅ Ready
+│   ├── models.py                      ✅ Model architectures
+│   └── utils.py                       ✅ Utilities & losses
+│
+└── 5_sam_vmnet/                       ← NEW! Foundation model
+    ├── README.md                      ✅ Complete guide
+    ├── 01_sam_vmnet_setup.ipynb       ✅ Setup & clone
+    ├── 02_sam_vmnet_finetune.ipynb    ✅ Fine-tuning
+    ├── 03_sam_vmnet_inference.ipynb   ✅ Evaluation
+    └── models.py                      ✅ Utilities
 ```
 
 ---
@@ -148,12 +167,13 @@ experiments/
 
 ## 📊 Performance Comparison
 
-| Model | Dice | Time | Best For |
-|-------|------|------|----------|
-| Simple U-Net | 0.75 | 1 h | Learning |
-| cGAN | 0.98 | 2-3 h | Generation |
-| YOLOv8 | 0.60 | 1.5 h | Speed |
-| FPN | **0.91** | 3-5 h | **Accuracy** |
+| Model | Dice | Time | GPU (GB) | Best For |
+|-------|------|------|----------|----------|
+| Simple U-Net | 0.75 | 1 h | 4 | Learning |
+| cGAN | 0.98 | 2-3 h | 8 | Generation |
+| YOLOv8 | 0.60 | 1.5 h | 6 | Speed |
+| FPN+Swin | **0.91** | 3-5 h | 8+ | **Accuracy** |
+| SAM-VMNet | 0.85-0.92 | 3-4 h | 12 | Foundation+Medical |
 
 ---
 
