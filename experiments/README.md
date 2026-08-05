@@ -1,12 +1,12 @@
 # Coronary Artery Segmentation Experiments
 
-**5 Complete Training Pipelines - Ready for Google Colab**
+**5 Complete Training Pipelines + 1 Planned - Ready for Google Colab**
 
 All code uses `BASE_URL` configuration for Colab and local compatibility.
 
 ---
 
-## 🎯 5 Approaches
+## 🎯 5 Approaches (Implemented)
 
 ### 1. Simple U-Net (Learning)
 - **Folder:** `1_simple_unet_learning/`
@@ -52,6 +52,14 @@ All code uses `BASE_URL` configuration for Colab and local compatibility.
 - **Performance:** Dice ~0.85-0.92
 - **Includes:** models.py (utilities)
 - **Based on:** [SAM-VMNet by qimingfan10](https://github.com/qimingfan10/SAM-VMNet)
+
+### 6. Detectron2 (Instance Segmentation) 🔄 PLANNED
+- **Folder:** `6_detectron2/`
+- **Status:** Placeholder for future implementation
+- **Best for:** Instance segmentation with detection
+- **Performance:** Expected Dice ~0.70-0.75
+- **Why Later:** cGAN and YOLOv8 already cover this task
+- **Reference:** [Detectron2 by Meta](https://github.com/facebookresearch/detectron2)
 
 ---
 
@@ -116,12 +124,15 @@ experiments/
 │   ├── models.py                      ✅ Model architectures
 │   └── utils.py                       ✅ Utilities & losses
 │
-└── 5_sam_vmnet/                       ← NEW! Foundation model
-    ├── README.md                      ✅ Complete guide
-    ├── 01_sam_vmnet_setup.ipynb       ✅ Setup & clone
-    ├── 02_sam_vmnet_finetune.ipynb    ✅ Fine-tuning
-    ├── 03_sam_vmnet_inference.ipynb   ✅ Evaluation
-    └── models.py                      ✅ Utilities
+├── 5_sam_vmnet/                       ← Foundation model
+│   ├── README.md                      ✅ Complete guide
+│   ├── 01_sam_vmnet_setup.ipynb       ✅ Setup & clone
+│   ├── 02_sam_vmnet_finetune.ipynb    ✅ Fine-tuning
+│   ├── 03_sam_vmnet_inference.ipynb   ✅ Evaluation
+│   └── models.py                      ✅ Utilities
+│
+└── 6_detectron2/                      ← PLANNED (Future)
+    └── README.md                      📋 Placeholder
 ```
 
 ---
